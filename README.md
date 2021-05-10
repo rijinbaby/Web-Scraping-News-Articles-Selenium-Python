@@ -4,3 +4,4 @@
 ### Web scraping techniques are used to collect data about daily deaths for each provinces. The sources include local newspapers and official bulletins
 
 ## Main Project: https://ceeds.unimi.it/covid-19-in-italy/
+## Main Repository: https://github.com/CEEDS-DEMM/COVID-Pro-Dataset
