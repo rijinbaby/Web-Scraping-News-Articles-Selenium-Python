@@ -50,7 +50,20 @@ def get_data_emilia_romagna(day_spec):
     news = driver.find_element_by_class_name("news-text")
     content = news.text
 
-    res = re.findall(r'([^.]*nuovi decessi[^.]*)', content)[1]
+    # res = re.findall(r'([^.]*nuovi decessi[^.]*)', content)[1]
+    # res = res.split(',')
+
+    res_test = content.split("\n")
+    text_content = "nuovi decessi"
+
+    pos_n = 0
+    for x in range(len(res_test)):
+        pos_n += 1
+        result = text_content in res_test[x]
+        if result is True:
+            break
+
+    res = res_test[pos_n - 1]
     res = res.split(',')
 
     prov = []

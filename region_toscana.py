@@ -21,6 +21,7 @@ def get_data_toscana(day_spec):
 
     # Title contents
     article_title = ["Coronavirus", "nuovi casi", "decessi", "guarigioni"]
+    article_title2 = ["Coronavirus", "nuovi casi", "decesso", "guarigioni"]
 
     posts = driver.find_elements_by_xpath(
         """//*[@id="portlet_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_bfnpGlY0o8Sy"]/div/div/div/div[2]/div/section/div/div/div[2]/a""")
@@ -32,7 +33,8 @@ def get_data_toscana(day_spec):
         a_date = driver.find_element_by_xpath(
             '//*[@id="portlet_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_bfnpGlY0o8Sy"]/div/div/div/div[2]/div/section/div[' + str(
                 pos) + ']/div/div[1]/div[1]')
-        result = (all(p in x.text for p in article_title)) and (date in a_date.text)
+        result = ((all(p in x.text for p in article_title) or all(p in x.text for p in article_title2))
+                  and (date in a_date.text))
         if result is True:
             break
 
@@ -49,7 +51,7 @@ def get_data_toscana(day_spec):
     content = news.text
 
     # positioning death info
-    res = re.findall(r'([^.]*Relativamente alla provincia di notifica[^.]*)', content)[0]
+    res = re.findall(r'([^.]*relativamente alla provincia di notifica[^.]*)', content)[0]
     res = res.split(',')
 
     prov = []
